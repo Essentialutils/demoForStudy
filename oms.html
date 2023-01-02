@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <title>Document</title>
+    <style>
+      table td,
+      table td * {
+        border: 1px solid black;
+        vertical-align: top;
+      }
+      .fullTable {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <input class="categoryField" />
+    <button class="omsClick">submit</button>
+    <div id="fullTable"></div>
+  </body>
+  <script>
+    let categories = [];
+    $(document).ready(function () {
+      let table_body = "<table>";
+      $(".omsClick").click(function () {
+        categories.push({
+          name: $(".categoryField").val(),
+          data: [],
+        });
+        buildTable();
+      });
+    });
+    function buildTable() {
+      $("#fullTable").empty();
+      var table_body = '<table border="1">';
+      table_body += "<tr>";
+      for (let i = 0; i < categories.length; i++) {
+        const element = categories[i];
+        table_body += `
+            <th>
+                <input type="checkbox" id="${i}">${element.name}
+                <button onclick="removeValueFromCategories(${i})">X</button>
+            </th>
+        `;
+      }
+      table_body += "</tr><tr>";
+      for (let i = 0; i < categories.length; i++) {
+        const element = categories[i];
+        table_body += buildInnerTable(element.data ?? [], i);
+      }
+      table_body += "</tr></table>";
+      $("#fullTable").html(table_body);
+    }
+    function buildInnerTable(innerList, index) {
+      let tableData = `<td><table style="width:100%">`;
+      tableData += `<tr>
+            <th><input class="categoryField${index}"/></th>
+            <th><button onclick="addValueToSubCategories(${index})">submit</button></th>
+        </tr>`;
+      for (let i = 0; i < innerList.length; i++) {
+        const element = innerList[i];
+        tableData += `
+        <tr>
+            <td><input type="checkbox" id="${index}${i}">${element}</td>
+            <td>
+                <center>
+                    <button onclick="removeValueFromSubCategories(${index},${i})">X</button>
+                </center>
+            </td>
+        </tr>`;
+      }
+      tableData += `</table></td>`;
+      return tableData;
+    }
+    function addValueToSubCategories(index) {
+      categories[index].data.push($(".categoryField" + index).val());
+      buildTable();
+    }
+    function removeValueFromSubCategories(catIndex, subCatIndex) {
+      if ($(`#${catIndex}${subCatIndex}`).is(":checked")) {
+        categories[catIndex].data.splice(subCatIndex, 1);
+        buildTable();
+      } else {
+        alert(
+          `select to delete the item '${categories[catIndex].data[subCatIndex]}'`
+        );
+      }
+    }
+    function removeValueFromCategories(catIndex) {
+      if ($(`#${catIndex}`).is(":checked")) {
+        categories.splice(catIndex, 1);
+        buildTable();
+      } else {
+        alert(`select to delete the main list '${categories[catIndex].name}'`);
+      }
+    }
+  </script>
+</html>
