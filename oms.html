@@ -8,44 +8,27 @@
     <title>Document</title>
     <style>
       body {
-   background-color: #E6E6FA;
-}
-.onclick{
-float: right;
-
-
-}
-th{
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: #04AA6D;
-  height: 39px;
-  padding: 15px;
-
-}
-
-
-
-.categoryField{
-position: absolute;
-    right: 772px;
-    bottom: 478px;
-    background-color: lightblue;
-    width: 189px;
-    height: 41px;
-}
-
-
-#fullTable{
-    bottom: 297px;
-    position: absolute;
-    right: 518px;
-    border-spacing: 30px;
-    float:right;
-    border-spacing:170px;
-
-    }
+        background-color: #e6e6fa;
+      }
+      table,
+      td,
+      th {
+        border: none;
+        border-collapse: collapse;
+        text-align: left;
+      }
+      .categoryField {
+        position: absolute;
+        right: 772px;
+        bottom: 478px;
+        background-color: lightblue;
+        width: 189px;
+        height: 41px;
+      }
+      #fullTable {
+        top: 200px;
+        position: absolute;
+      }
     </style>
   </head>
   <body>
@@ -58,31 +41,36 @@ position: absolute;
     $(document).ready(function () {
       let table_body = "<table>";
       $(".omsClick").click(function () {
-        categories.push({
-          name: $(".categoryField").val(),
-
-          data: [],
-        });
-        $('.categoryField').val('');
-        buildTable();
+        if ($(".categoryField").val()) {
+          categories.push({
+            name: $(".categoryField").val(),
+            data: [],
+          });
+          $(".categoryField").val("");
+          buildTable();
+        } else {
+          alert("please enter main task");
+        }
       });
     });
     function buildTable() {
       $("#fullTable").empty();
-      var table_body = '<table border="1" width="100" border-spacing: "30px" </br>';
+      var table_body = '<table style="padding-right: 50px;"> </br>';
       table_body += "<tr>";
-
 
       for (let i = 0; i < categories.length; i++) {
         const element = categories[i];
         table_body += `
-            <th>
-                <input type="checkbox" id="${i}">${element.name}
-                <button onclick="removeValueFromCategories(${i})" class="onclick">X</button>
+            <th style="text-align: left;vertical-align: center; padding-right: 50px;" >
+                <div style="background-color: #04aa6d; padding: 10px;">
+                    <input type="checkbox" id="${i}">
+                    <label for="${i}"> ${element.name}</label>
+                    <button onclick="removeValueFromCategories(${i})" class="onclick" style=" float: right;">X</button>
+                </div>
             </th>
         `;
       }
-      table_body += "</tr><tr>";
+      table_body += `</tr><tr style="vertical-align: top;">`;
       for (let i = 0; i < categories.length; i++) {
         const element = categories[i];
         table_body += buildInnerTable(element.data ?? [], i);
@@ -91,7 +79,7 @@ position: absolute;
       $("#fullTable").html(table_body);
     }
     function buildInnerTable(innerList, index) {
-      let tableData = `<td><table style="width:100%">`;
+      let tableData = `<td style="padding-right: 50px;"><table style="width:100%;background-color: #04aa6d; padding: 10px;">`;
       tableData += `<tr>
             <th><input class="categoryField${index}" placeholder="enter sub task"/></th>
             <th><button onclick="addValueToSubCategories(${index})">submit</button></th>
@@ -114,10 +102,12 @@ position: absolute;
     }
 
     function addValueToSubCategories(index) {
-
-      categories[index].data.push($(".categoryField" + index).val());
-      buildTable();
-
+      if ($(".categoryField" + index).val()) {
+        categories[index].data.push($(".categoryField" + index).val());
+        buildTable();
+      } else {
+        alert("please enter sub task");
+      }
     }
 
     function removeValueFromSubCategories(catIndex, subCatIndex) {
