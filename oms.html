@@ -7,14 +7,45 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <title>Document</title>
     <style>
-      table td,
-      table td * {
-        border: 1px solid black;
-        vertical-align: top;
-      }
-      .fullTable {
-        width: 100%;
-      }
+      body {
+   background-color: #E6E6FA;
+}
+.onclick{
+float: right;
+
+
+}
+th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #04AA6D;
+  height: 39px;
+  padding: 15px;
+
+}
+
+
+
+.categoryField{
+position: absolute;
+    right: 772px;
+    bottom: 478px;
+    background-color: lightblue;
+    width: 189px;
+    height: 41px;
+}
+
+
+#fullTable{
+    bottom: 297px;
+    position: absolute;
+    right: 518px;
+    border-spacing: 30px;
+    float:right;
+    border-spacing:170px;
+
+    }
     </style>
   </head>
   <body>
@@ -29,21 +60,25 @@
       $(".omsClick").click(function () {
         categories.push({
           name: $(".categoryField").val(),
+
           data: [],
         });
+        $('.categoryField').val('');
         buildTable();
       });
     });
     function buildTable() {
       $("#fullTable").empty();
-      var table_body = '<table border="1">';
+      var table_body = '<table border="1" width="100" border-spacing: "30px" </br>';
       table_body += "<tr>";
+
+
       for (let i = 0; i < categories.length; i++) {
         const element = categories[i];
         table_body += `
             <th>
                 <input type="checkbox" id="${i}">${element.name}
-                <button onclick="removeValueFromCategories(${i})">X</button>
+                <button onclick="removeValueFromCategories(${i})" class="onclick">X</button>
             </th>
         `;
       }
@@ -58,7 +93,7 @@
     function buildInnerTable(innerList, index) {
       let tableData = `<td><table style="width:100%">`;
       tableData += `<tr>
-            <th><input class="categoryField${index}"/></th>
+            <th><input class="categoryField${index}" placeholder="enter sub task"/></th>
             <th><button onclick="addValueToSubCategories(${index})">submit</button></th>
         </tr>`;
       for (let i = 0; i < innerList.length; i++) {
@@ -74,12 +109,17 @@
         </tr>`;
       }
       tableData += `</table></td>`;
+
       return tableData;
     }
+
     function addValueToSubCategories(index) {
+
       categories[index].data.push($(".categoryField" + index).val());
       buildTable();
+
     }
+
     function removeValueFromSubCategories(catIndex, subCatIndex) {
       if ($(`#${catIndex}${subCatIndex}`).is(":checked")) {
         categories[catIndex].data.splice(subCatIndex, 1);
