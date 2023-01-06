@@ -20,7 +20,7 @@
 .overflow-scroll {
   overflow: scroll;
 }
-#submitbtn {
+#submitBtn {
   position: absolute;
   bottom: 56px;
   right: 157px;
@@ -129,7 +129,7 @@ input[type="text"] {
   display: none;
   /*to hide popup initially*/
 }
-#usercheck {
+#userCheck {
   position: absolute;
   bottom: 164px;
   left: 233px;

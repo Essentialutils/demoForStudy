@@ -1,116 +1,150 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="res/style.css"/>
-</head>
-<body>
-<div class="container-fluid">
-    <div class="row justify-content-center">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
+    />
+    <link rel="stylesheet" href="res/css/style.css" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
         <div class="col-10">
-            <div class="">
-                <div class="row">
-                    <div class="col-8 border-right min-vh-100">
-                        <div class="vh-100 overflow-scroll pr-2">
-                            <div class="d-flex justify-content-between align-items-end mt-3 mb-3 position-sticky bg-white" style="top:0;z-index: 10">
-                                <div class="">
-                                    <h4 class="text-primary mb-0">My Shop</h4>
-                                    <small class="text-black-50">Bootstrap & jQuery</small>
-                                </div>
-                                <div class="">
-                                    <div class="form-row">
-                                        <div class="mr-2">
-                                            <input type="text" class="form-control text-capitalize  " id="search" placeholder="search item">
-                                        </div>
-                                        <div class="">
-                                            <select name="" id="category" class="custom-select">
-                                                <option value="0">All Category</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div id="products" class="card-columns">
-                            </div>
-                        </div>
+          <div class="">
+            <div class="row">
+              <div class="col-8 border-right min-vh-100">
+                <div class="vh-100 overflow-scroll pr-2">
+                  <div
+                    class="d-flex justify-content-between align-items-end mt-3 mb-3 position-sticky bg-white"
+                    style="top: 0; z-index: 10"
+                  >
+                    <div class="">
+                      <h4 class="text-primary mb-0">My Shop</h4>
+                      <small class="text-black-50">Bootstrap & jQuery</small>
                     </div>
-                    <div class="col-4">
-                        <div class="vh-100 overflow-scroll">
-                            <div class="d-flex justify-content-between align-items-end mt-3 mb-3">
-                                <div class="">
-                                    <h4 class="text-primary mb-0">My Cart</h4>
-                                    <small class="text-black-50">Added Items</small>
-                                </div>
-                                <div class="">
-                                    <h4>
-                                        <span class="item-in-cart-count">0</span>
-                                        <i class="fas fa-shopping-cart text-primary"></i>
-                                    </h4>
-                                </div>
-                            </div>
-                            <div id="cart">
-                            </div>
-                            <div class="total position-sticky py-3 bg-white" style="bottom: 0">
-                            </div>
+                    <div class="">
+                      <div class="form-row">
+                        <div class="mr-2">
+                          <input
+                            type="text"
+                            class="form-control text-capitalize"
+                            id="search"
+                            placeholder="search item"
+                          />
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<input type="submit" id="submitbtn" value="Submit" onclick="togglePopup()" class="btn btn-primary">
- <div class="content">
-        <div onclick="togglePopup()" class="close-btn">
-            ×
-        </div>
-                       <form>
-                      <div class="form-group">
-                     <label for="amount" id="amount">
-                        amount:
-                    </label>
-                    <input type="text" name="amnt" id="amnt" class="form-control" maxlength="">
-                          </div>
-                    <div class="form-group">
-                    <label for="user" id="user">
-                        cardnumber:
-                    </label>
-                    <input type="text" name="username" id="usernames" class="form-control" maxlength="">
-                        <h6 id="usercheck" style="color: black;">
-                            **required
-                            </h6>
+                        <div class="">
+                          <select name="" id="category" class="custom-select">
+                            <option value="0">All Category</option>
+                          </select>
                         </div>
-                    <div class="form-group">
-                    <label for="cvv" id="cvv">
-                        cardverification value:
-                    </label>
-                    <input type="text" name="card" id="card" class="form-control" placeholder="cvv" maxlength="">
-                      <h6 id="cvvv" style="color: black;">
-                            **required
-                            </h6>
-                        </div>
-                      <div class="form-group">
-                   <label for="expire" id="expire">
-                        expiry date:
-                    </label>
-                    <input type="text" name="ex" id="ex" class="form-control" placeholder="mm/dd"maxlength="">
-                       <h6 id="e" style="color: black;">
-                        **required
-                       </h6>
                       </div>
-                       </form>
-                <input type="submit" id="submit" value="pay" class="btn btn-primary">
-            </form>
+                    </div>
+                  </div>
+                  <div id="products" class="card-columns"></div>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="vh-100 overflow-scroll">
+                  <div
+                    class="d-flex justify-content-between align-items-end mt-3 mb-3"
+                  >
+                    <div class="">
+                      <h4 class="text-primary mb-0">My Cart</h4>
+                      <small class="text-black-50">Added Items</small>
+                    </div>
+                    <div class="">
+                      <h4>
+                        <span class="item-in-cart-count">0</span>
+                        <i class="fas fa-shopping-cart text-primary"></i>
+                      </h4>
+                    </div>
+                  </div>
+                  <div id="cart"></div>
+                  <div
+                    class="total position-sticky py-3 bg-white"
+                    style="bottom: 0"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+    </div>
+    <input
+      type="submit"
+      id="submitBtn"
+      value="Submit"
+      onclick="togglePopup()"
+      class="btn btn-primary"
+    />
+    <div class="content">
+      <div onclick="togglePopup()" class="close-btn">×</div>
+      <form>
+        <div class="form-group">
+          <label for="amount" id="amount"> amount: </label>
+          <input
+            type="text"
+            name="amnt"
+            id="amnt"
+            class="form-control"
+            maxlength=""
+          />
         </div>
- </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="res/core.js"></script>
-</body>
+        <div class="form-group">
+          <label for="user" id="user"> cardnumber: </label>
+          <input
+            type="text"
+            name="username"
+            id="usernames"
+            class="form-control"
+            maxlength=""
+          />
+          <h6 id="userCheck" style="color: black">**required</h6>
+        </div>
+        <div class="form-group">
+          <label for="cvv" id="cvv"> cardverification value: </label>
+          <input
+            type="text"
+            name="card"
+            id="card"
+            class="form-control"
+            placeholder="cvv"
+            maxlength=""
+          />
+          <h6 id="cvvv" style="color: black">**required</h6>
+        </div>
+        <div class="form-group">
+          <label for="expire" id="expire"> expiry date: </label>
+          <input
+            type="text"
+            name="ex"
+            id="ex"
+            class="form-control"
+            placeholder="mm/dd"
+            maxlength=""
+          />
+          <h6 id="e" style="color: black">**required</h6>
+        </div>
+      </form>
+      <input type="submit" id="submit" value="pay" class="btn btn-primary" />
+      <!-- </form> -->
+    </div>
+    <!-- </div> -->
+    <!-- </div> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="res/js/core.js"></script>
+  </body>
 </html>

@@ -1,4 +1,5 @@
 let products = [];
+let totalCost = "00.0";
 function toShort(str, max = 50) {
   if (str.length > max) {
     return str.substring(0, max) + ".....";
@@ -35,7 +36,7 @@ function cartTotal() {
   let count = $(".item-in-cart-cost").length;
   $(".item-in-cart-count").html(count);
   if (count > 0) {
-    let totalCost = $(".item-in-cart-cost")
+    totalCost = $(".item-in-cart-cost")
       .toArray()
       .map((el) => el.innerHTML)
       .reduce((x, y) => Number(x) + Number(y));
@@ -97,6 +98,7 @@ $("#category").on("change", function () {
   }
 });
 $("#products").delegate(".add-to-cart", "click", function () {
+  $(".content").hide();
   let currentItemId = $(this).attr("data-id");
   let productInfo = products.filter((el) => el.id == currentItemId)[0];
   if (
@@ -139,10 +141,12 @@ $("#products").delegate(".add-to-cart", "click", function () {
   cartTotal();
 });
 $("#cart").delegate(".remove-from-cart", "click", function () {
+  $(".content").hide();
   $(this).parentsUntil("#cart").remove();
   cartTotal();
 });
 $("#cart").delegate(".quantity-plus", "click", function () {
+  $(".content").hide();
   let q = $(this).siblings(".quantity").val();
   let p = $(this).siblings(".quantity").attr("unitPrice");
   let newQ = Number(q) + 1;
@@ -194,7 +198,7 @@ function togglePopup() {
   $(".content").toggle();
 }
 // Validate cardnumber
-$("#usercheck").hide();
+$("#userCheck").hide();
 let usernameError = true;
 $("#usernames").keyup(function () {
   validateUsername();
@@ -202,16 +206,16 @@ $("#usernames").keyup(function () {
 function validateUsername() {
   let usernameValue = $("#usernames").val();
   if (usernameValue.length == "") {
-    $("#usercheck").show();
+    $("#userCheck").show();
     usernameError = false;
     return false;
   } else if (usernameValue.length < 7) {
-    $("#usercheck").show();
-    $("#usercheck").html("**required 7 number ");
+    $("#userCheck").show();
+    $("#userCheck").html("**required 7 number ");
     usernameError = false;
     return false;
   } else {
-    $("#usercheck").hide();
+    $("#userCheck").hide();
   }
 }
 // Validate cvv
@@ -257,8 +261,8 @@ function validateEx() {
   }
 }
 //amount
-$("#submitbtn").on("click", function () {
-  $(".cart-cost-total").add("#amnt");
+$("#submitBtn").on("click", function () {
+  $("#amnt").val(`${Number(totalCost).toFixed(2)}`);
 });
 $("#submit").click(function () {
   validateUsername();
