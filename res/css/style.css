@@ -14,13 +14,14 @@
 .product .card-title {
   margin-top: 50px;
 }
+
 .img-in-cart {
   height: 50px;
 }
 .overflow-scroll {
   overflow: scroll;
 }
-#submitBtn {
+#submitbtn {
   position: absolute;
   bottom: 56px;
   right: 157px;
@@ -129,7 +130,7 @@ input[type="text"] {
   display: none;
   /*to hide popup initially*/
 }
-#userCheck {
+#usercheck {
   position: absolute;
   bottom: 164px;
   left: 233px;
@@ -143,4 +144,16 @@ input[type="text"] {
   position: absolute;
   bottom: 52px;
   right: 185px;
+}
+.c {
+  position: absolute;
+  bottom: 37px;
+  right: 201px;
+}
+.menu {
+  background-color: #e9ecef;
+  width: 471px;
+  height: 118px;
+  position: absolute;
+  bottom: -135px;
 }
