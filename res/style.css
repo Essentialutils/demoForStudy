@@ -1,0 +1,146 @@
+.product {
+  border: none !important;
+}
+.product img {
+  height: 150px;
+  width: auto;
+  margin-bottom: -50px;
+  margin-left: 1rem;
+  transition: 0.5s;
+}
+.product:hover img {
+  transform: scale(1.05) rotate(-10deg);
+}
+.product .card-title {
+  margin-top: 50px;
+}
+.img-in-cart {
+  height: 50px;
+}
+.overflow-scroll {
+  overflow: scroll;
+}
+#submitbtn {
+  position: absolute;
+  bottom: 56px;
+  right: 157px;
+}
+container {
+  width: 300px;
+  height: 500px;
+  position: absolute;
+  right: 10px;
+  top: 30%;
+  text-align: center;
+  z-index: 10;
+}
+.table {
+  width: 98%;
+  height: 200px;
+  overflow-y: scroll; /* overflow = overflow-x + overflow-y */
+  border: 2px solid black;
+  border-radius: 4px;
+  background: white;
+  padding: 2%;
+}
+.col1-name {
+  width: 70%;
+  height: 100%;
+  float: left;
+}
+.col2-price {
+  width: 29%;
+  float: left;
+  height: 100%;
+}
+.close-btn {
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  padding: 4px;
+}
+#usernames {
+  position: absolute;
+  width: 172px;
+  bottom: 190px;
+  right: 95px;
+}
+#cvv {
+  position: absolute;
+  width: 172px;
+  bottom: 129px;
+  right: 273px;
+}
+#user {
+  position: absolute;
+  bottom: 188px;
+  right: 273px;
+}
+#card {
+  position: absolute;
+  bottom: 132px;
+  width: 170px;
+  right: 97px;
+}
+#amnt {
+  position: absolute;
+  bottom: 236px;
+  width: 170px;
+  right: 98px;
+}
+#amount {
+  bottom: 231px;
+  position: absolute;
+  right: 280px;
+}
+#submit {
+  position: absolute;
+  bottom: 0px;
+}
+input[type="text"] {
+  background: #f1f1f1;
+}
+#ex {
+  position: absolute;
+  left: 236px;
+  bottom: 76px;
+  width: 165px;
+}
+#expire {
+  position: absolute;
+  bottom: 74px;
+  right: 284px;
+}
+.content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 499px;
+  height: 284px;
+  text-align: center;
+  background-color: #e8eae6;
+  box-sizing: border-box;
+  padding: 10px;
+  z-index: 100;
+  display: none;
+  /*to hide popup initially*/
+}
+#usercheck {
+  position: absolute;
+  bottom: 164px;
+  left: 233px;
+}
+#cvvv {
+  position: absolute;
+  bottom: 109px;
+  right: 197px;
+}
+#e {
+  position: absolute;
+  bottom: 52px;
+  right: 185px;
+}

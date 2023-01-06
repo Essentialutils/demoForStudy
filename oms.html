@@ -1,132 +1,116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <style>
-      body {
-        background-color: #e6e6fa;
-      }
-      table,
-      td,
-      th {
-        border: none;
-        border-collapse: collapse;
-        text-align: left;
-      }
-      .categoryField {
-        position: absolute;
-        right: 772px;
-        bottom: 478px;
-        background-color: lightblue;
-        width: 189px;
-        height: 41px;
-      }
-      #fullTable {
-        top: 200px;
-        position: absolute;
-      }
-    </style>
-  </head>
-  <body>
-    <input class="categoryField" />
-    <button class="omsClick">submit</button>
-    <div id="fullTable"></div>
-  </body>
-  <script>
-    let categories = [];
-    $(document).ready(function () {
-      let table_body = "<table>";
-      $(".omsClick").click(function () {
-        if ($(".categoryField").val()) {
-          categories.push({
-            name: $(".categoryField").val(),
-            data: [],
-          });
-          $(".categoryField").val("");
-          buildTable();
-        } else {
-          alert("please enter main task");
-        }
-      });
-    });
-    function buildTable() {
-      $("#fullTable").empty();
-      var table_body = '<table style="padding-right: 50px;"> </br>';
-      table_body += "<tr>";
-
-      for (let i = 0; i < categories.length; i++) {
-        const element = categories[i];
-        table_body += `
-            <th style="text-align: left;vertical-align: center; padding-right: 50px;" >
-                <div style="background-color: #04aa6d; padding: 10px;">
-                    <input type="checkbox" id="${i}">
-                    <label for="${i}"> ${element.name}</label>
-                    <button onclick="removeValueFromCategories(${i})" class="onclick" style=" float: right;">X</button>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="res/style.css"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <div class="">
+                <div class="row">
+                    <div class="col-8 border-right min-vh-100">
+                        <div class="vh-100 overflow-scroll pr-2">
+                            <div class="d-flex justify-content-between align-items-end mt-3 mb-3 position-sticky bg-white" style="top:0;z-index: 10">
+                                <div class="">
+                                    <h4 class="text-primary mb-0">My Shop</h4>
+                                    <small class="text-black-50">Bootstrap & jQuery</small>
+                                </div>
+                                <div class="">
+                                    <div class="form-row">
+                                        <div class="mr-2">
+                                            <input type="text" class="form-control text-capitalize  " id="search" placeholder="search item">
+                                        </div>
+                                        <div class="">
+                                            <select name="" id="category" class="custom-select">
+                                                <option value="0">All Category</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="products" class="card-columns">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="vh-100 overflow-scroll">
+                            <div class="d-flex justify-content-between align-items-end mt-3 mb-3">
+                                <div class="">
+                                    <h4 class="text-primary mb-0">My Cart</h4>
+                                    <small class="text-black-50">Added Items</small>
+                                </div>
+                                <div class="">
+                                    <h4>
+                                        <span class="item-in-cart-count">0</span>
+                                        <i class="fas fa-shopping-cart text-primary"></i>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div id="cart">
+                            </div>
+                            <div class="total position-sticky py-3 bg-white" style="bottom: 0">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </th>
-        `;
-      }
-      table_body += `</tr><tr style="vertical-align: top;">`;
-      for (let i = 0; i < categories.length; i++) {
-        const element = categories[i];
-        table_body += buildInnerTable(element.data ?? [], i);
-      }
-      table_body += "</tr></table>";
-      $("#fullTable").html(table_body);
-    }
-    function buildInnerTable(innerList, index) {
-      let tableData = `<td style="padding-right: 50px;"><table style="width:100%;background-color: #04aa6d; padding: 10px;">`;
-      tableData += `<tr>
-            <th><input class="categoryField${index}" placeholder="enter sub task"/></th>
-            <th><button onclick="addValueToSubCategories(${index})">submit</button></th>
-        </tr>`;
-      for (let i = 0; i < innerList.length; i++) {
-        const element = innerList[i];
-        tableData += `
-        <tr>
-            <td><input type="checkbox" id="${index}${i}">${element}</td>
-            <td>
-                <center>
-                    <button onclick="removeValueFromSubCategories(${index},${i})">X</button>
-                </center>
-            </td>
-        </tr>`;
-      }
-      tableData += `</table></td>`;
-
-      return tableData;
-    }
-
-    function addValueToSubCategories(index) {
-      if ($(".categoryField" + index).val()) {
-        categories[index].data.push($(".categoryField" + index).val());
-        buildTable();
-      } else {
-        alert("please enter sub task");
-      }
-    }
-
-    function removeValueFromSubCategories(catIndex, subCatIndex) {
-      if ($(`#${catIndex}${subCatIndex}`).is(":checked")) {
-        categories[catIndex].data.splice(subCatIndex, 1);
-        buildTable();
-      } else {
-        alert(
-          `select to delete the item '${categories[catIndex].data[subCatIndex]}'`
-        );
-      }
-    }
-    function removeValueFromCategories(catIndex) {
-      if ($(`#${catIndex}`).is(":checked")) {
-        categories.splice(catIndex, 1);
-        buildTable();
-      } else {
-        alert(`select to delete the main list '${categories[catIndex].name}'`);
-      }
-    }
-  </script>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="submit" id="submitbtn" value="Submit" onclick="togglePopup()" class="btn btn-primary">
+ <div class="content">
+        <div onclick="togglePopup()" class="close-btn">
+            ×
+        </div>
+                       <form>
+                      <div class="form-group">
+                     <label for="amount" id="amount">
+                        amount:
+                    </label>
+                    <input type="text" name="amnt" id="amnt" class="form-control" maxlength="">
+                          </div>
+                    <div class="form-group">
+                    <label for="user" id="user">
+                        cardnumber:
+                    </label>
+                    <input type="text" name="username" id="usernames" class="form-control" maxlength="">
+                        <h6 id="usercheck" style="color: black;">
+                            **required
+                            </h6>
+                        </div>
+                    <div class="form-group">
+                    <label for="cvv" id="cvv">
+                        cardverification value:
+                    </label>
+                    <input type="text" name="card" id="card" class="form-control" placeholder="cvv" maxlength="">
+                      <h6 id="cvvv" style="color: black;">
+                            **required
+                            </h6>
+                        </div>
+                      <div class="form-group">
+                   <label for="expire" id="expire">
+                        expiry date:
+                    </label>
+                    <input type="text" name="ex" id="ex" class="form-control" placeholder="mm/dd"maxlength="">
+                       <h6 id="e" style="color: black;">
+                        **required
+                       </h6>
+                      </div>
+                       </form>
+                <input type="submit" id="submit" value="pay" class="btn btn-primary">
+            </form>
+        </div>
+        </div>
+ </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="res/core.js"></script>
+</body>
 </html>
