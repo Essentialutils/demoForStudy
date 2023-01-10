@@ -145,15 +145,15 @@ input[type="text"] {
   bottom: 52px;
   right: 185px;
 }
-.c {
-  position: absolute;
-  bottom: 37px;
-  right: 201px;
-}
 .menu {
   background-color: #e9ecef;
   width: 471px;
   height: 118px;
   position: absolute;
   bottom: -135px;
+}
+.c {
+  position: absolute;
+  bottom: 37px;
+  right: 201px;
 }

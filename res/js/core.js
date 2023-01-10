@@ -13,11 +13,10 @@ function toShow(x) {
   $("#products").empty();
   x.map((product) => {
     $("#products").append(`
-
        <div class="card product pt-4">
            <img src="${product.image}" class="card-img-top" alt="">
            <div class="card-body border rounded">
-               <p class="card-title font-weight-bold text-nowrap overflow-hidden text-primary">
+               <
                ${product.title}
                </p>
                <small class="text-black-50">
@@ -33,7 +32,6 @@ function toShow(x) {
                </div>
            </div>
        </div>
-
        `);
   });
 }
@@ -50,14 +48,12 @@ function cartTotal() {
       .reduce((x, y) => Number(x) + Number(y));
     // console.log(typeof totalCost);
     $(".total").html(`
-
            <div class="d-flex justify-content-between font-weight-bold px-3">
                <h4>Total</h4>
                <h4>$ <span class="cart-cost-total">${Number(totalCost).toFixed(
                  2
                )}</span></h4>
            </div>
-
        `);
   } else {
     $(".total").html("empty cart");
@@ -228,19 +224,11 @@ $("#usernames").keyup(function () {
   validateUsername();
 });
 
-/** ───────────────────────────┤ OMS_DOC ├───────────────────────────
- *
- * @function validateUsername() will return boolean values based on
- *
- * condition also hide and shows validation message
- *
- * @requires return true/false
- *
- * ────────────────────────────────────────────────────────────── **/
 function validateUsername() {
   let usernameValue = $("#usernames").val();
   if (usernameValue.length < 7) {
     $("#usercheck").show();
+    $("#usercheck").html("**required 7 number ");
     return false;
   } else {
     $("#usercheck").hide();
@@ -252,16 +240,6 @@ function validateUsername() {
 $("#card").keyup(function () {
   validateCard();
 });
-
-/** ───────────────────────────┤ OMS_DOC ├───────────────────────────
- *
- * @function validateCard() will return boolean values based on
- *
- * condition also hide and shows validation message
- *
- * @requires return true/false
- *
- * ────────────────────────────────────────────────────────────── **/
 
 function validateCard() {
   let cardValue = $("#card").val();
@@ -280,16 +258,6 @@ $("#ex").keyup(function () {
   validateEx();
 });
 
-/** ───────────────────────────┤ OMS_DOC ├───────────────────────────
- *
- * @function validateEx() will return boolean values based on
- *
- * condition also hide and shows validation message
- *
- * @requires return true/false
- *
- * ────────────────────────────────────────────────────────────── **/
-
 function validateEx() {
   let exValue = $("#ex").val();
   if (exValue.length == "") {
@@ -302,13 +270,7 @@ function validateEx() {
 }
 
 //amount
-/** ───────────────────────────┤ OMS_DOC ├───────────────────────────
- *
- * hiding all field error messages and also success message
- *
- * @augments usercheck,cvvv,e,menu
- *
- * ────────────────────────────────────────────────────────────── **/
+
 $("#submitbtn").on("click", function () {
   $("#usercheck").hide();
   $("#cvvv").hide();
@@ -316,18 +278,8 @@ $("#submitbtn").on("click", function () {
   $(".menu").hide("slide");
   $("#amnt").val(`${Number(totalCost).toFixed(2)}`);
 });
-
-/** ───────────────────────────┤ OMS_DOC ├───────────────────────────
- *
- * calling all validation functions
- *
- * @function  validateUsername(),validateCard(),validateEx()
- *
- * based an all boolean return values decision making statement
- *
- * will execute then success alert may show or hide
- *
- * ────────────────────────────────────────────────────────────── **/
+//
+$("#c").html("**required 3 number ");
 $("#submit").click(function () {
   if (validateUsername() && validateCard() && validateEx()) {
     $(".menu").show("slide");
